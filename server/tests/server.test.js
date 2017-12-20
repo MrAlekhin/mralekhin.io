@@ -182,7 +182,7 @@ describe('PATCH /todos/:id', ()=>{
       .end(done)
   });
 
-  it('should not update the todo if not cteator', (done)=>{
+  it('should not update the todo created by another user', (done)=>{
     var text = 'The test completed';
     var hexId = todos[0]._id.toHexString();
     request(app)
