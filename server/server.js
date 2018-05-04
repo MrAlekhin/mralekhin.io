@@ -162,7 +162,16 @@ app.post('/projects', authenticate, async (req, res)=>{
   }catch(e){
     res.status(400).send(e);
   }
-})
+});
+
+app.get('/projects', async (req, res)=>{
+  try {
+    var projects = await Project.find({});
+    res.send({projects});
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
 
 app.listen(port, ()=>{
   console.log(`Started up at port ${port}`);
