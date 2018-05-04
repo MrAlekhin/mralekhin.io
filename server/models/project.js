@@ -1,7 +1,13 @@
 var mongoose = require('mongoose');
 
-var Project = mongoose.model('Project', {
+var ProjectSchema = new mongoose.Schema({
   projectName:{
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 1
+  },
+  image:{
     type: String,
     required: true,
     trim: true,
@@ -26,9 +32,13 @@ var Project = mongoose.model('Project', {
     default: null
   },
   tags: [{
-    tag: String,
-    required: true
+    tag:{
+      type: String,
+      default: null
+    }
   }]
 });
+
+var Project = mongoose.model('Project', ProjectSchema);
 
 module.exports = {Project};

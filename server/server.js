@@ -9,6 +9,7 @@ const {ObjectID} = require('mongodb');
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
+var {Project} = require('./models/project');
 var {authenticate} = require('./middleware/authenticate');
 const publicPath = path.join(__dirname, '../public');
 var app = express();
@@ -148,6 +149,20 @@ app.delete('/users/me/token', authenticate, async (req, res)=>{
     res.status(400).send();
   }
 });
+
+app.post('/projects', authenticate, async (req, res)=>{
+  try{
+    // const body = _.pick(req.body, ['projectName', 'image', 'shortDescription', 'tags']);
+    var project = new Project(req.body);
+    project.save().then((doc)=>{
+      res.status(200).send(doc);
+    }).catch((e)=>{
+      res.status(400).send(e);
+    });
+  }catch(e){
+    res.status(400).send(e);
+  }
+})
 
 app.listen(port, ()=>{
   console.log(`Started up at port ${port}`);
