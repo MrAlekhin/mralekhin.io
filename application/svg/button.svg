@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 120 120" style="enable-background:new 0 0 120 120;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:none;}
+	.st2{fill:#FFFFFF;}
+	.st3{font-family:'Lato-Thin';}
+	.st4{font-size:15px;}
+</style>
+<g>
+	
+		<image style="overflow:visible;opacity:0.75;" width="150" height="76" xlink:href="F24ED5B3D28A135B.png"  transform="matrix(1 0 0 1 -15 24)">
+	</image>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="55" x2="120" y2="55">
+			<stop  offset="0" style="stop-color:#FF1D25"/>
+			<stop  offset="1" style="stop-color:#ED1E79"/>
+		</linearGradient>
+		<path class="st0" d="M108,78H12C5.4,78,0,72.6,0,66V44c0-6.6,5.4-12,12-12h96c6.6,0,12,5.4,12,12v22C120,72.6,114.6,78,108,78z"/>
+	</g>
+</g>
+<rect x="13.1" y="48.6" class="st1" width="95.4" height="11.4"/>
+<text transform="matrix(1 0 0 1 31.751 59.4414)" class="st2 st3 st4">Click me!</text>
+</svg>
