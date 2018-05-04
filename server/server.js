@@ -3,18 +3,19 @@ require('./config/config');
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const {ObjectID} = require('mongodb');
 
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate');
-
+const publicPath = path.join(__dirname, '../public');
 var app = express();
 const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json())
-
+app.use(bodyParser.json());
+app.use(express.static(publicPath));
 //add the ne todo
 app.post('/todos', authenticate, (req, res)=>{
   var todo = new Todo({
