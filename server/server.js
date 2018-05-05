@@ -175,6 +175,19 @@ app.get('/projects', async (req, res)=>{
   }
 });
 
+app.get('/projects/:id', async (req, res)=>{
+  try {
+    var id = req.params.id;
+    if(!ObjectID.isValid(id)){
+      return res.status(404).send();
+    }
+    var project = await Project.findOne({_id: id});
+    res.status(200).send({project});
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
 app.listen(port, ()=>{
   console.log(`Started up at port ${port}`);
 });

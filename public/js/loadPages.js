@@ -20,11 +20,35 @@ function loadProjects(data){
         body.append(
           `<div class="project">
             <div class="project-window">
-              <div class="image" style="background-image: url(${projects[i].image})"></div>
+              <a href="#/projects/${projects[i]._id}" class="image" style="background-image: url(${projects[i].image})"></a>
             </div>
             <h3>${projects[i].projectName}</h3>
             ${tags}
-            <hr>
+          </div>`);
+        tags = '';
+      }
+    }
+  });
+}
+
+function loadProject(data){
+  return new Promise(function(resolve, reject){
+    $('#body').append(`<h1>${data.projectName}</h1>`);
+    if(document.getElementById('body')){
+      let body = $('#body');
+      let tags = '';
+      const projects = data.projects;
+      for(let i =0; i < projects.length; i++){
+        for (let j = 0; j < projects[i].tags.length; j++) {
+          tags+=`<span>${projects[i].tags[j].tag}</span>`;
+        }
+        body.append(
+          `<div class="project">
+            <div class="project-window">
+              <a href="#/projects/${projects[i]._id}" class="image" style="background-image: url(${projects[i].image})"></a>
+            </div>
+            <h3>${projects[i].projectName}</h3>
+            ${tags}
           </div>`);
         tags = '';
       }

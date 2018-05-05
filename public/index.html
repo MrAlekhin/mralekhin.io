@@ -491,15 +491,62 @@
   <script src="js/screenfull.js"></script>
   <script src="js/world.js"></script>
   <script src="js/loadPages.js"></script>
+  <script src="js/sammy.min.js"></script>
+  <script src="js/sammy.template.js"></script>
   <script>
-    $(document).ready(()=>{
-      var width, height;
-      loadWorld();
-      window.location.hash = '';
-    });
-    $(window).on('hashchange', function(){
-      switch(window.location.hash) {
-        case '#projects':
+    // $(document).ready(()=>{
+    //   var width, height;
+    //   loadWorld();
+    //   window.location.hash = '';
+    // });
+    // $(window).on('hashchange', function(){
+    //   switch(window.location.hash) {
+    //     case '#projects':
+    //         $.ajax({
+    //           type: "GET",
+    //           dataType: "json",
+    //           url: "/projects"
+    //         }).done(function(data){
+    //           loadProjects(data).then(loadBody());
+    //         });
+    //         break;
+    //     default:
+    //         console.log('hash: '+window.location.hash);
+    //   }
+    // });
+
+    (function($) {
+
+      var app = $.sammy('#body', function() {
+        this.use('Template');
+
+        // this.around(function(callback) {
+        //   var context = this;
+        //   this.load('data/articles.json')
+        //       .then(function(items) {
+        //         context.items = items;
+        //       })
+        //       .then(callback);
+        // });
+
+        this.get('#/', function() {
+          this.app.swap('');
+          $('#body').hide();
+          var width, height;
+          loadWorld();
+          // context.app.swap('');
+          // $.each(this.items, function(i, item) {
+          //   context.render('templates/article.template', {id: i, item: item})
+          //          .appendTo(context.$element());
+          // });
+        });
+
+        this.get('#/projects', function() {
+            // var str=location.href.toLowerCase();
+            // context.app.swap('');
+            // context.render('templates/about.template', {})
+            //        .appendTo(context.$element());
+            this.app.swap('');
             $.ajax({
               type: "GET",
               dataType: "json",
@@ -507,11 +554,34 @@
             }).done(function(data){
               loadProjects(data).then(loadBody());
             });
-            break;
-        default:
-            console.log('hash: '+window.location.hash);
-      }
-    });
+        });
+
+        this.get('#/projects/:id', function() {
+          this.app.swap('');
+          $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: `/projects/${this.params['id']}`
+          }).done(function(data){
+            loadProjects(data).then(loadBody());
+          });
+        });
+       //
+       //
+       //  this.before('.*', function() {
+       //
+       //      var hash = document.location.hash;
+       //      $("nav").find("a").removeClass("current");
+       //      $("nav").find("a[href='"+hash+"']").addClass("current");
+       // });
+
+      });
+
+      $(function() {
+        app.run('#/');
+      });
+
+    })(jQuery);
 
   </script>
 </body>
