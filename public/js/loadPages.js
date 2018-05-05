@@ -1,3 +1,11 @@
+function loadBody(){
+  $('#body').show();
+  $('#body').css('background-image', `linear-gradient(60deg, #29323c 0%, #485563 100%)`);
+  Snap.animate(0, 1, (value)=>{
+    $('#body').css('opacity', `${value}`);
+  }, 500, mina.easeinout);
+}
+
 function loadProjects(data){
   return new Promise(function(resolve, reject){
     $('#body').append('<h1>Projects</h1>');

@@ -445,7 +445,7 @@
   }
 
   .project > span{
-    font-size: 1.5vw;
+    font-size: 1.2vw;
   }
 
 }
@@ -505,7 +505,7 @@
               dataType: "json",
               url: "/projects"
             }).done(function(data){
-              loadProjects(data);
+              loadProjects(data).then(loadBody());
             });
             break;
         default:

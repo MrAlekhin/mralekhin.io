@@ -1169,12 +1169,12 @@ var loadWorld = ()=>{
 
     });
     addClickMe(()=>{
-      $('#body').show();
-      $('#body').css('background-image', `linear-gradient(60deg, #29323c 0%, #485563 100%)`);
+      // $('#body').show();
+      // $('#body').css('background-image', `linear-gradient(60deg, #29323c 0%, #485563 100%)`);
       window.location.hash = 'projects';
-      Snap.animate(0, 1, (value)=>{
-        $('#body').css('opacity', `${value}`);
-      }, 500, mina.easeinout)
+      // Snap.animate(0, 1, (value)=>{
+      //   $('#body').css('opacity', `${value}`);
+      // }, 500, mina.easeinout)
     });
   }
 
