@@ -12,11 +12,13 @@ var {User} = require('./models/user');
 var {Project} = require('./models/project');
 var {authenticate} = require('./middleware/authenticate');
 const publicPath = path.join(__dirname, '../public');
+const metaPath = path.join(__dirname, '../meta');
 var app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(express.static(publicPath));
+app.use(express.static(metaPath));
 //add the ne todo
 app.post('/todos', authenticate, (req, res)=>{
   var todo = new Todo({

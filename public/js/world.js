@@ -1170,8 +1170,7 @@ var loadWorld = ()=>{
     });
     addClickMe(()=>{
       $('#body').show();
-      $('#body').css('background', `linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
- background-blend-mode: multiply,multiply`);
+      $('#body').css('background-image', `linear-gradient(60deg, #29323c 0%, #485563 100%)`);
       window.location.hash = 'projects';
       Snap.animate(0, 1, (value)=>{
         $('#body').css('opacity', `${value}`);
