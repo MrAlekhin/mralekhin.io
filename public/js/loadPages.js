@@ -2,7 +2,7 @@ function loadBody(){
   if(document.getElementById('body')){
     let body = $('#body');
     if(!body.is(':visible')){
-      $('body').append('<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5aefaf8e96e6fc00110b311d&product=sticky-share-buttons"></script>');
+      //$('body').append('<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5aefaf8e96e6fc00110b311d&product=sticky-share-buttons"></script>');
       body.show();
       body.css('background-image', `linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)`);
       Snap.animate(0, 1, (value)=>{
