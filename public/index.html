@@ -268,6 +268,23 @@
   background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cstyle%3E.st0%7Bfill:%23d12028%7D%3C/style%3E%3Cpath class='st0' d='M506 309.8H6c-3.3 0-6 2.7-6 6v29.7c0 23 18.7 41.7 41.7 41.7h147.1l-18.3 75.5h-22.6c-9.9 0-17.9 8-17.9 17.9 0 9.9 8 17.9 17.9 17.9h216.3c9.9 0 17.9-8 17.9-17.9 0-9.9-8-17.9-17.9-17.9h-22.6l-18.3-75.5h147.1c23 0 41.7-18.7 41.7-41.7v-29.7c-.1-3.3-2.8-6-6.1-6zM374 214.6h-81.9c-6.6 0-11.9 5.3-11.9 11.9s5.3 11.9 11.9 11.9H374c6.6 0 11.9-5.3 11.9-11.9 0-6.6-5.3-11.9-11.9-11.9zM374 169.2h-81.9c-6.6 0-11.9 5.3-11.9 11.9s5.3 11.9 11.9 11.9H374c6.6 0 11.9-5.3 11.9-11.9 0-6.5-5.3-11.9-11.9-11.9zM239.3 169.2H138c-6.6 0-11.9 5.3-11.9 11.9v45.4c0 6.6 5.3 11.9 11.9 11.9h101.3c6.6 0 11.9-5.3 11.9-11.9v-45.4c0-6.5-5.4-11.9-11.9-11.9z'/%3E%3Cpath class='st0' d='M470.6 13.7H41.3C18.5 13.9 0 32.4 0 55.3V280c0 3.3 2.7 6 6 6h500.1c3.3 0 6-2.7 6-6V55.3c-.1-22.9-18.6-41.4-41.5-41.6zm-29.8 242.5c0 3.3-2.7 6-6 6H77.2c-3.3 0-6-2.7-6-6V43.4c0-3.3 2.7-6 6-6h357.6c3.3 0 6 2.7 6 6v212.8z'/%3E%3Cpath class='st0' d='M374 61.2H138c-6.6 0-11.9 5.3-11.9 11.9v58.5c0 6.6 5.3 11.9 11.9 11.9h236c6.6 0 11.9-5.3 11.9-11.9V73.2c0-6.6-5.3-12-11.9-12z'/%3E%3C/svg%3E");
 }
 
+.btn-icon-back{
+  z-index: 13;
+  text-decoration: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 2em;
+  height: 2em;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 10px gray;
+  border-radius: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='256' fill='%23d12028'/%3E%3Cpath d='M316.7 399c2 2 4.5 3 7.3 3s5.3-1 7.3-3c4-4 4-10.6 0-14.6L202.9 256l128.4-128.4c4-4 4-10.6 0-14.6s-10.6-4-14.6 0l-136 135.7c-4 4-4 10.6 0 14.6l136 135.7z' fill='%23ededed'/%3E%3C/svg%3E");
+}
+
 .logoBig{
   left: calc(50vw - 40vw);
   top: 20%;
@@ -389,7 +406,7 @@
 }
 .project > h3{
   position:relative;
-  bottom: 0;
+  bottom: -5px;
   text-transform: uppercase;
   margin: 10px 0 10px 10px;
   color: #444444;
@@ -457,6 +474,10 @@
   background-color: #b9afa7;
   border-radius: 4px;
   cursor: pointer;
+}
+
+#st-2{
+  display:none;
 }
 
 .unslider-nav {margin-bottom: 10px}
@@ -584,7 +605,13 @@
   </ul>
 
   <div hidden id="body"></div>
-  <div id="loadingMask"><div class="logoBig"></div><span class="loader"><span class="loader-inner"></span></span><span id="loaderText">Loading the world...</span></div>
+  <div id="loadingMask">
+    <div class="logoBig"></div>
+    <span class="loader">
+      <span class="loader-inner"></span>
+    </span>
+    <span id="loaderText">Loading the world...</span>
+  </div>
   <div id="content"></div>
   <div id="world"></div>
   <script src="js/jquery.js"></script>
@@ -600,7 +627,6 @@
   <script src="js/world.js"></script>
   <script src="js/loadPages.js"></script>
   <script src="js/sammy.min.js"></script>
-  <script src="js/sammy.template.js"></script>
   <script src="js/unslider.min.js"></script>
   <script>
     // $(document).ready(()=>{
@@ -627,27 +653,12 @@
     (function($) {
 
       var app = $.sammy('#body', function() {
-        this.use('Template');
-
-        // this.around(function(callback) {
-        //   var context = this;
-        //   this.load('data/articles.json')
-        //       .then(function(items) {
-        //         context.items = items;
-        //       })
-        //       .then(callback);
-        // });
-
         this.get('#/', function() {
           this.app.swap('');
           $('#body').hide();
+          $('#st-2').hide();
           var width, height;
           loadWorld();
-          // context.app.swap('');
-          // $.each(this.items, function(i, item) {
-          //   context.render('templates/article.template', {id: i, item: item})
-          //          .appendTo(context.$element());
-          // });
         });
 
         this.get('#/projects', function() {
@@ -656,6 +667,7 @@
             // context.render('templates/about.template', {})
             //        .appendTo(context.$element());
             this.app.swap('');
+            $('#st-2').show();
             $.ajax({
               type: "GET",
               dataType: "json",
@@ -667,12 +679,14 @@
 
         this.get('#/projects/:id', function() {
           this.app.swap('');
+          $('#st-2').show();
           $.ajax({
             type: "GET",
             dataType: "json",
             url: `/projects/${this.params['id']}`
           }).done(function(data){
-            loadProject(data).then(loadBody());
+            loadProject(data)
+            .then(loadBody());
           });
         });
        //
