@@ -16,14 +16,14 @@ function loadProjects(data){
     if(document.getElementById('body')){
       let body = $('#body');
       let tags = '';
-      body.append('<h1>Projects</h1>');
+      body.append('<h1>Projects</h1><a href="/#" class="btn-icon-back"></a>');
       const projects = data.projects;
       for(let i =0; i < projects.length; i++){
         for (let j = 0; j < projects[i].tags.length; j++) {
           tags+=`<span>${projects[i].tags[j].tag}</span>`;
         }
         body.append(
-          `<a href="/#" class="btn-icon-back"></a>
+          `
           <div class="project">
             <div class="project-window">
               <a href="#/projects/${projects[i]._id}" class="image" style="background-image: url(${projects[i].image})"></a>
