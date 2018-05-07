@@ -3,7 +3,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <title>Three Js First Project</title>
+  <link rel="stylesheet" href="css/unslider.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <title>MrAlekhin</title>
 </head>
 <style>
   @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&subset=latin-ext');
@@ -11,6 +13,18 @@
   @font-face {
     font-family: 'HelveticaNeue';
     src: url('fonts/helveticaneue.woff')  format('woff');
+  }
+  @font-face {
+    font-family: 'MrRobot';
+    src: url('fonts/MrRobot.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('fonts/MrRobot.woff') format('woff'),
+         url('fonts/MrRobot.svg#MrRobot') format('svg');
+  }
+  @font-face{
+    font-family: 'UbuntuMono-Bold';
+    src: url('fonts/UbuntuMono-B.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('fonts/UbuntuMono-B.woff') format('woff'),
+        url('fonts/UbuntuMono-B.svg#UbuntuMono-Bold') format('svg'); /* Legacy iOS */;
   }
 
 
@@ -82,18 +96,6 @@
   border: 4px solid #D12129;
   top: 50%;
   animation: loader 2s infinite ease;
-}
-@font-face {
-  font-family: 'MrRobot';
-  src: url('fonts/MrRobot.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('fonts/MrRobot.woff') format('woff'),
-       url('fonts/MrRobot.svg#MrRobot') format('svg');
-}
-@font-face{
-  font-family: 'UbuntuMono-Bold';
-  src: url('fonts/UbuntuMono-B.ttf')  format('truetype'), /* Safari, Android, iOS */
-      url('fonts/UbuntuMono-B.woff') format('woff'),
-      url('fonts/UbuntuMono-B.svg#UbuntuMono-Bold') format('svg'); /* Legacy iOS */;
 }
 
 .loader-inner {
@@ -338,12 +340,20 @@
 #body > h1{
   position: relative;
   top: 10px;
-  margin: auto;
+  margin: 0px auto;
   text-align: center;
-  padding: 20px;
   font-family: 'Lato', sans-serif;
-  font-weight: 100;
-  color: white;
+  font-weight: 300;
+  font-size: 2.5em;
+  color: #424242;
+}
+
+#body > h4{
+  color: #424242;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 .project-window{
@@ -363,8 +373,8 @@
   padding: 5px;
   font-size: 1em;
   font-family: 'Lato', sans-serif;
-  font-weight: 200;
-  color: white;
+  font-weight: 300;
+  color: #444444;
 }
 .project > hr{
   border: 0.2px solid #4f5c6d;
@@ -375,10 +385,9 @@
   bottom: 0;
   text-transform: uppercase;
   margin: 10px 0 10px 10px;
-  color: white;
+  color: #444444;
   font-family: 'Lato', sans-serif;
   font-weight: 600;
-  font-size:
 }
 
 .project-window > .image{
@@ -393,6 +402,103 @@
   background-position: 50% 50%;
   box-shadow: 0px 5px 100px 0px #00000099;
 }
+
+.projectDetail{
+  max-width: 800;
+  margin: 20px auto;
+  color: #333;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  line-height: 1.45;
+  font-size: 1em;
+  padding: 0 5px 0 5px;
+}
+
+.projectDetail > p {margin-bottom: 1.3em;}
+
+.projectDetail > h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+.projectDetail > h1 {
+  margin-top: 0;
+  font-size: 3.157em;
+}
+
+.projectDetail > h2 {font-size: 2.369em;}
+
+.projectDetail > h3 {font-size: 1.777em;}
+
+.projectDetail > h4 {font-size: 1.333em;}
+
+.projectDetail > small, .font_small {font-size: 0.75em;}
+
+.projectDetail > table{
+  font-size: 1.1em;
+  font-weight: 300;
+}
+.projectDetail td{
+  padding: 5px;
+}
+
+.projectDetail > a{
+  text-decoration: none;
+  color: #fbfbfb;
+  padding: 3px;
+  background-color: #b9afa7;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.unslider-nav {margin-bottom: 10px}
+/* .projectDetail > h1{
+  color: #bfbfbf;
+  font-weight: 900;
+  font-size: 1.6em;
+  margin: 20px 5px 20px 5px;
+}
+
+.projectDetail > h2{
+  color: floralwhite;
+  font-weight: 800;
+  font-size: 1.2em;
+  margin: 10px 5px 10px 5px;
+  text-transform: uppercase;
+}
+
+.projectDetail > h3{
+  color: floralwhite;
+  font-weight: 700;
+  font-size: 0.9em;
+  margin: 10px 5px 10px 5px;
+  text-transform: uppercase;
+}
+
+.projectDetail > p{
+  margin: 10px 5px 0 10px;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  color: #dadada;
+  font-weight: 400;
+} */
+
+.my-slider{
+  width: 100%;
+
+  margin: 0 auto;
+  text-align: center;
+}
+.my-slider img{
+  width: 90%;
+  box-sizing: border-box;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px #00000073;
+}
+
+
 
 @media only screen and (min-width: 800px) {
   .btn-icon-close{
@@ -416,11 +522,6 @@
     width: 500px;
     height: 250px;
   }
-
-  #body{
-    /* text-align: center; */
-  }
-
 
 
   .project{
@@ -493,6 +594,7 @@
   <script src="js/loadPages.js"></script>
   <script src="js/sammy.min.js"></script>
   <script src="js/sammy.template.js"></script>
+  <script src="js/unslider.min.js"></script>
   <script>
     // $(document).ready(()=>{
     //   var width, height;
@@ -563,7 +665,7 @@
             dataType: "json",
             url: `/projects/${this.params['id']}`
           }).done(function(data){
-            loadProjects(data).then(loadBody());
+            loadProject(data).then(loadBody());
           });
         });
        //

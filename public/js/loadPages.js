@@ -1,17 +1,22 @@
 function loadBody(){
-  $('#body').show();
-  $('#body').css('background-image', `linear-gradient(60deg, #29323c 0%, #485563 100%)`);
-  Snap.animate(0, 1, (value)=>{
-    $('#body').css('opacity', `${value}`);
-  }, 500, mina.easeinout);
+  if(document.getElementById('body')){
+    let body = $('#body');
+    if(!body.is(':visible')){
+      body.show();
+      body.css('background-image', `linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)`);
+      Snap.animate(0, 1, (value)=>{
+        body.css('opacity', `${value}`);
+      }, 500, mina.easeinout);
+    }
+  }
 }
 
 function loadProjects(data){
   return new Promise(function(resolve, reject){
-    $('#body').append('<h1>Projects</h1>');
     if(document.getElementById('body')){
       let body = $('#body');
       let tags = '';
+      body.append('<h1>Projects</h1>');
       const projects = data.projects;
       for(let i =0; i < projects.length; i++){
         for (let j = 0; j < projects[i].tags.length; j++) {
@@ -33,25 +38,30 @@ function loadProjects(data){
 
 function loadProject(data){
   return new Promise(function(resolve, reject){
-    $('#body').append(`<h1>${data.projectName}</h1>`);
-    if(document.getElementById('body')){
-      let body = $('#body');
-      let tags = '';
-      const projects = data.projects;
-      for(let i =0; i < projects.length; i++){
-        for (let j = 0; j < projects[i].tags.length; j++) {
-          tags+=`<span>${projects[i].tags[j].tag}</span>`;
+      if(document.getElementById('body')){
+        let body = $('#body');
+        let screenshots = '';
+        const project = data.project;
+        for(let i=0; i<project.screenshots.length; i++){
+          screenshots += `<li><img src="${project.screenshots[i]}"></li>`
         }
         body.append(
-          `<div class="project">
-            <div class="project-window">
-              <a href="#/projects/${projects[i]._id}" class="image" style="background-image: url(${projects[i].image})"></a>
+          `<h1>${project.projectName}</h1>
+          <h4>${project.shortDescription}</h4>
+          <div class="projectDetail">
+            <div class="my-slider">
+              <ul>
+                ${screenshots}
+              </ul>
             </div>
-            <h3>${projects[i].projectName}</h3>
-            ${tags}
+            ${project.content}
           </div>`);
-        tags = '';
+
+      	$('.my-slider').unslider({
+          autoplay: true,
+          arrows: false
+        });
+        screenshots = '';
       }
-    }
   });
 }

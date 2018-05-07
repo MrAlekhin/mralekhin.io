@@ -31,6 +31,10 @@ var ProjectSchema = new mongoose.Schema({
     type: String,
     default: null
   },
+  screenshots: [{
+    type: String,
+    default: null
+  }],
   tags: [{
     tag:{
       type: String,
