@@ -58,7 +58,7 @@ function loadProject(data){
               </ul>
             </div>
             ${project.content}
-          </div>`, ()=>resolve());
+          </div>`);
 
       	$('.my-slider').unslider({
           autoplay: true,
@@ -72,7 +72,7 @@ function loadProject(data){
 
 function loadSVG(url){
   return new Promise(function(resolve, reject) {
-    Snap.load(url, (data)=>resolve(data));
+    Snap.load(url, resolve);
   });
 }
 
@@ -86,9 +86,15 @@ function addSVG(data){
         }else{
           data = loadSVG("svg/AboutMe-01.svg");
         }
-        data.then((result)=>{
-          snap.append(result);
-          resolve;
+        data.then((res)=>{snap.append(res)}).then(()=>{
+          $(document).ready(()=>{
+            $('#resume').click(()=>{
+              window.open('resume.pdf')
+            });
+            $('#resume').find('text').click(()=>{
+              window.open('resume.pdf')
+            });
+          });
         });
 
       }

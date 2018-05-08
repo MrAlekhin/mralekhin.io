@@ -807,7 +807,9 @@ var loadWorld = ()=>{
           }, 5000, mina.easeinout, ()=>secondHandMoveUp())
         }
       });
-      addClickMe();
+      addClickMe(()=>{
+        window.location.hash = '/about';
+      });
   }
   function loadExperiments(){
     appendSvg(dataExperiments, ()=>{
