@@ -40,7 +40,15 @@ var ProjectSchema = new mongoose.Schema({
       type: String,
       default: null
     }
-  }]
+  }],
+  gitHub: {
+    type: String,
+    default: null
+  },
+  demo: {
+    type: String,
+    default: null
+  }
 });
 
 var Project = mongoose.model('Project', ProjectSchema);

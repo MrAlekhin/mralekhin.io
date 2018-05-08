@@ -559,7 +559,7 @@
     width: 25%;
     margin: 2% 23% 0 2%;
   }
-  .project:nth-child(2n){
+  .project:nth-child(2n+1){
     margin: 2% 2% 0 23%;
   }
   .project-window{
@@ -690,6 +690,12 @@
             loadProject(data)
             .then(loadBody());
           });
+        });
+
+        this.get('#/about', function() {
+            this.app.swap('');
+            $('#st-2').show();
+            addSVG().then(loadBody());
         });
        //
        //

@@ -16,15 +16,14 @@ function loadProjects(data){
     if(document.getElementById('body')){
       let body = $('#body');
       let tags = '';
-      body.append('<h1>Projects</h1><a href="/#" class="btn-icon-back"></a>');
+      body.append('<h1>Projects</h1><a href="#/" class="btn-icon-back"></a>');
       const projects = data.projects;
       for(let i =0; i < projects.length; i++){
         for (let j = 0; j < projects[i].tags.length; j++) {
           tags+=`<span>${projects[i].tags[j].tag}</span>`;
         }
         body.append(
-          `
-          <div class="project">
+          `<div class="project">
             <div class="project-window">
               <a href="#/projects/${projects[i]._id}" class="image" style="background-image: url(${projects[i].image})"></a>
             </div>
@@ -64,6 +63,31 @@ function loadProject(data){
           arrows: false
         });
         screenshots = '';
+      }
+  });
+}
+
+function loadSVG(url){
+  return new Promise(function(resolve, reject) {
+    Snap.load(url, resolve);
+  });
+}
+
+function addSVG(data){
+  return new Promise(function(resolve, reject){
+      if(document.getElementById('body')){
+        let snap = Snap('#body');
+        let data;
+        if(window.innerWidth<window.innerHeight){
+          data = loadSVG("svg/AboutMeMobile.svg");
+        }else{
+          data = loadSVG("svg/AboutMe-01.svg");
+        }
+        data.then((result)=>{
+          snap.append(result);
+          resolve;
+        });
+
       }
   });
 }
