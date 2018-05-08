@@ -1,14 +1,16 @@
-function loadBody(){
-  if(document.getElementById('body')){
-    let body = $('#body');
-    if(!body.is(':visible')){
-      body.show();
-      body.css('background-image', `linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)`);
-      Snap.animate(0, 1, (value)=>{
-        body.css('opacity', `${value}`);
-      }, 500, mina.easeinout);
+let loadBody = function(){
+  return new Promise(function(resolve, reject){
+    if(document.getElementById('body')){
+      let body = $('#body');
+      if(!body.is(':visible')){
+        body.show();
+        body.css('background-image', `linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)`);
+        Snap.animate(0, 1, (value)=>{
+          body.css('opacity', `${value}`);
+        }, 500, mina.easeinout, ()=>resolve);
+      }
     }
-  }
+  });
 }
 
 function loadProjects(data){
@@ -56,20 +58,21 @@ function loadProject(data){
               </ul>
             </div>
             ${project.content}
-          </div>`);
+          </div>`, ()=>resolve());
 
       	$('.my-slider').unslider({
           autoplay: true,
           arrows: false
         });
         screenshots = '';
+        resolve;
       }
   });
 }
 
 function loadSVG(url){
   return new Promise(function(resolve, reject) {
-    Snap.load(url, resolve);
+    Snap.load(url, (data)=>resolve(data));
   });
 }
 
@@ -91,3 +94,13 @@ function addSVG(data){
       }
   });
 }
+
+function removeLds(){
+  $('.lds-eclipse').remove();
+}
+
+// function addIsd(){
+//   return new Promise(function(resolve, reject){
+//     $(body).append('<div class="lds-eclipse"><div></div></div>');
+//   });
+// }

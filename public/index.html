@@ -34,7 +34,6 @@
         url('fonts/UbuntuMono-B.svg#UbuntuMono-Bold') format('svg'); /* Legacy iOS */;
   }
 
-
   html, body {
     width: 100%;
     height: 100%;
@@ -166,6 +165,63 @@
   100% {
     height: 0%;
   }
+}
+
+@keyframes lds-eclipse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes lds-eclipse {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.lds-eclipse {
+  position: absolute;
+  z-index: 30;
+  background-color: #ffffffc4;
+  width: 100vw;
+  height: 100vh;
+}
+.lds-eclipse div {
+  position: absolute;
+  -webkit-animation: lds-eclipse 1.3s linear infinite;
+  animation: lds-eclipse 1.3s linear infinite;
+  width: 40px;
+  height: 40px;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  border-radius: 50%;
+  box-shadow: 0 4px 0 0 #D12028;
+  -webkit-transform-origin: 20px 22px;
+  transform-origin: 20px 22px;
+}
+/* .lds-eclipse {
+  -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+} */
+
+.lds-css{
+
 }
 
 .btn-icon-close{
@@ -306,16 +362,6 @@
   background-image: url('svg/smallLogo.svg');
 }
 
-
-@keyframes elementsAppear {
-  0%{
-    top: -50px;
-  }
-  100% {
-    top: 0;
-  }
-}
-
 .sidebar{
   position: fixed;
   z-index: 11;
@@ -361,6 +407,11 @@
   -webkit-overflow-scrolling: touch;
   background-color: gray;
   margin-bottom: 30px;
+}
+#body > svg{
+  height: 100%;
+  width: 100%;
+  padding-bottom: 42px;
 }
 
 #body > h1{
@@ -483,36 +534,6 @@
 }
 
 .unslider-nav {margin-bottom: 10px}
-/* .projectDetail > h1{
-  color: #bfbfbf;
-  font-weight: 900;
-  font-size: 1.6em;
-  margin: 20px 5px 20px 5px;
-}
-
-.projectDetail > h2{
-  color: floralwhite;
-  font-weight: 800;
-  font-size: 1.2em;
-  margin: 10px 5px 10px 5px;
-  text-transform: uppercase;
-}
-
-.projectDetail > h3{
-  color: floralwhite;
-  font-weight: 700;
-  font-size: 0.9em;
-  margin: 10px 5px 10px 5px;
-  text-transform: uppercase;
-}
-
-.projectDetail > p{
-  margin: 10px 5px 0 10px;
-  font-size: 1.1em;
-  line-height: 1.5em;
-  color: #dadada;
-  font-weight: 400;
-} */
 
 .my-slider{
   width: 100%;
@@ -577,6 +598,10 @@
 
   .project > span{
     font-size: 1.2vw;
+  }
+
+  #body > svg{
+    padding-bottom: 0;
   }
 
 }
@@ -669,18 +694,20 @@
             // context.render('templates/about.template', {})
             //        .appendTo(context.$element());
             this.app.swap('');
+            $(body).append('<div class="lds-eclipse"><div></div></div>');
             $('#st-2').show();
             $.ajax({
               type: "GET",
               dataType: "json",
               url: "/projects"
             }).done(function(data){
-              loadProjects(data).then(loadBody());
+              loadProjects(data).then(loadBody()).then(removeLds());
             });
         });
 
         this.get('#/projects/:id', function() {
           this.app.swap('');
+          $(body).append('<div class="lds-eclipse"><div></div></div>');
           $('#st-2').show();
           $.ajax({
             type: "GET",
@@ -688,14 +715,18 @@
             url: `/projects/${this.params['id']}`
           }).done(function(data){
             loadProject(data)
-            .then(loadBody());
+            .then(loadBody())
+            .then(removeLds());
           });
         });
 
         this.get('#/about', function() {
             this.app.swap('');
+            $(body).append('<div class="lds-eclipse"><div></div></div>');
             $('#st-2').show();
-            addSVG().then(loadBody());
+            addSVG()
+            .then(loadBody())
+            .then(removeLds());
         });
        //
        //
