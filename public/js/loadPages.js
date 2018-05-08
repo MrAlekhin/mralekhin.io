@@ -79,6 +79,7 @@ function loadSVG(url){
 function addSVG(data){
   return new Promise(function(resolve, reject){
       if(document.getElementById('body')){
+        $('#body').append('<a href="#/" class="btn-icon-back"></a><div class="lds-eclipse"><div></div></div>');
         let snap = Snap('#body');
         let data;
         if(window.innerWidth<window.innerHeight){
